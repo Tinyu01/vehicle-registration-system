@@ -1,6 +1,6 @@
 # Vehicle Registration System
 
-A Java application for managing and searching vehicle registrations using binary search algorithm.
+A Java application for managing and searching vehicle registrations using binary search algorithm. This system allows users to search for registrations, add new registrations, and view all registrations in the database.
 
 ## Overview
 
@@ -8,14 +8,17 @@ This repository contains a simple vehicle registration management system that de
 - Object-oriented programming in Java
 - Data storage using collections (ArrayList, TreeMap)
 - Binary search algorithm implementation
-- Basic file organization
+- Interactive command-line interface
+- User input validation
 
 ## Table of Contents
 - [Project Structure](#project-structure)
 - [Classes](#classes)
+- [Features](#features)
 - [How It Works](#how-it-works)
 - [Implementation Details](#implementation-details)
 - [How to Run](#how-to-run)
+- [User Guide](#user-guide)
 - [Sample Output](#sample-output)
 
 ## Project Structure
@@ -31,6 +34,8 @@ vehicle-registration-system/
 │   │       │   └── Database.java
 │   │       └── search/
 │   │           └── RegistrationSearch.java
+├── docs/
+│   └── UserGuide.md
 ├── README.md
 └── LICENSE
 ```
@@ -49,20 +54,30 @@ Manages a collection of registrations:
 - Stores registrations in a TreeMap (sorted by license plate)
 - Provides array access to the sorted registrations
 - Contains sample registration data
+- Allows adding new registrations
 
 ### RegistrationSearch
 
-Implements binary search to find registrations:
-- Searches by license plate number
-- Demonstrates efficient search in a sorted array
-- Includes a main method to demonstrate functionality
+Implements binary search and user interaction:
+- Searches by license plate number using binary search
+- Provides an interactive command-line interface
+- Handles user input for searching and adding registrations
+- Validates user input for correct formatting
+
+## Features
+
+- **Search for Registrations**: Quickly find vehicle registrations using binary search
+- **Add New Registrations**: Add new registrations to the system
+- **View All Registrations**: Display all registrations in the database
+- **User Input Validation**: Ensures license plates follow the correct format
+- **Interactive Menu System**: Easy-to-use command-line interface
 
 ## How It Works
 
-1. The `Database` class initializes with a predefined set of registrations
-2. Registrations are stored in a TreeMap to ensure they're sorted by license plate number
-3. The `RegistrationSearch` class retrieves the sorted array of registrations
-4. Binary search is used to efficiently find a registration by license plate number
+1. The application displays a menu with options for searching, adding, viewing, or exiting
+2. User selects an option and follows the prompts
+3. For searches, binary search efficiently finds registrations by license plate
+4. New registrations are added to the system (in memory for this version)
 5. Results are displayed to the user
 
 ## Implementation Details
@@ -78,6 +93,11 @@ The binary search implementation:
 
 The time complexity is O(log n), making it efficient for searching large datasets.
 
+### Data Format
+
+- License plates must follow the format: ABC-1234 (three letters, hyphen, four digits)
+- Owner names should be non-empty strings representing the vehicle owner's full name
+
 ## How to Run
 
 ```bash
@@ -90,14 +110,36 @@ javac com/registrationsystem/search/RegistrationSearch.java
 java com.registrationsystem.search.RegistrationSearch
 ```
 
+## User Guide
+
+See the [User Guide](docs/UserGuide.md) for detailed instructions on using the system.
+
 ## Sample Output
 
-When searching for license plate "GIG-1870":
+### Main Menu:
 ```
-GIG-1870	: Harvey Kilkenny
+=== Vehicle Registration System ===
+1. Search for a registration
+2. Add a new registration
+3. View all registrations
+4. Exit
+Enter your choice (1-4):
 ```
 
-When searching for a non-existent license plate:
+### Searching for a Registration:
 ```
-Error: Registration with license ABC-1234 not found.
+--- Search for a Registration ---
+Enter license plate (e.g., ABC-1234): GIG-1870
+
+Registration found:
+License: GIG-1870
+Owner: Harvey Kilkenny
+```
+
+### Adding a New Registration:
+```
+--- Add a New Registration ---
+Enter license plate (format: ABC-1234): ABC-1234
+Enter owner's full name: John Smith
+Registration added: ABC-1234 : John Smith
 ```
